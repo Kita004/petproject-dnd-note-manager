@@ -14,7 +14,7 @@ app.use(cors());
 
 mongoose.connect(process.env.ATLAS_URI);
 
-app.use("/auth", userRouter);
-app.use("/campaigns", campaignRouter);
+app.use("/api/auth", userRouter);
+app.use("/api/campaigns", campaignRouter);
 
 app.listen(3001, () => console.info("SERVER STARTED!"));
