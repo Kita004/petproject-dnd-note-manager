@@ -13,6 +13,7 @@ const CampaignSchema = new mongoose.Schema(
 
         sessions: [{ type: mongoose.Schema.Types.ObjectId, ref: "sessions" }],
         // notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "notes" }],
+        // userOwner: { type: mongoose.Schema.Types.ObjectId, required: true },
     },
     { timestamps: true }
 );
