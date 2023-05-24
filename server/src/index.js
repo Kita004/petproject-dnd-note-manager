@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { userRouter } from "./routes/users.js";
+import { campaignRouter } from "./routes/campaigns.js";
 
 dotenv.config();
 
@@ -14,5 +15,6 @@ app.use(cors());
 mongoose.connect(process.env.ATLAS_URI);
 
 app.use("/auth", userRouter);
+app.use("/campaigns", campaignRouter);
 
 app.listen(3001, () => console.info("SERVER STARTED!"));
