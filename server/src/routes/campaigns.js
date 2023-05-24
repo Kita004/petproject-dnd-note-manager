@@ -41,7 +41,7 @@ router.post("/create", async (req, res) => {
 
         await userOwner.save();
 
-        res.json(response);
+        res.json(savedCampaign);
     } catch (err) {
         console.info("ERROR when creating New Campaign: ", err);
     }
@@ -50,10 +50,10 @@ router.post("/create", async (req, res) => {
 // update Campaign, is it needed tho?
 router.put("/update/:id", async (req, res) => {
     try {
-        const campaignToUpdate = req.body;
+        const campaignWithUpdate = req.body;
         const updatedCampaign = await CampaignModel.updateOne(
             { _id: req.params.id },
-            campaignToUpdate
+            campaignWithUpdate
         );
 
         res.json(updatedCampaign);
@@ -62,11 +62,35 @@ router.put("/update/:id", async (req, res) => {
     }
 });
 
-router.delete("/delete/:campaign_id", async (req, res) => {
+router.delete("/", async (req, res) => {
     try {
+        const campaignID = new mongoose.Types.ObjectId(req.body.campaignID);
+        const userID = new mongoose.Types.ObjectId(req.body.userID);
+
+        const userOwner = await UserModel.findById(userID);
+
+        // userOwner.updateOne(
+        //     { _id: userID },
+        //     {
+        //         $pull: {
+        //             campaigns: {
+        //                 _id: campaignID,
+        //             },
+        //         },
+        //     }
+        // );
+
+        await userOwner.campaigns.pull({ _id: campaignID });
+        await userOwner.save();
+
+        await CampaignModel.deleteOne({ _id: campaignID });
+
+        res.json({
+            message: "Campaign Deleted Successfully!",
+        });
     } catch (err) {
         console.info(
-            `ERROR when deleting Campaign with ID ${req.params.id}: `,
+            `ERROR when deleting Campaign with ID ${req.body.campaignID}: `,
             err
         );
     }
