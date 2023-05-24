@@ -32,15 +32,18 @@ router.post("/login", async (req, res) => {
     if (!user) {
         return res.json({ message: "User does not exist!!" });
     }
+    try {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.json({ message: "Username or Password is Incorrect!!" });
+        }
 
-    if (!isPasswordValid) {
-        return res.json({ message: "Username or Password is Incorrect!!" });
+        const token = jwt.sign({ id: user._id }, secretKey);
+        res.json({ token, userID: user._id });
+    } catch (err) {
+        console.info("ERROR when logging in User: ", err);
     }
-
-    const token = jwt.sign({ id: user._id }, secretKey);
-    res.json({ token, userID: user._id });
 });
 
 export { router as userRouter };
