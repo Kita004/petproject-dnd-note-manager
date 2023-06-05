@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 
 import { SessionModel } from "../models/journey/Sessions.js";
 import { CampaignModel } from "../models/journey/Campaigns";
