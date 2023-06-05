@@ -7,7 +7,11 @@ const SessionSchema = new mongoose.Schema({
     events: [String],
     notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "notes" }],
 
-    campaignOwner: { type: mongoose.Schema.Types.ObjectId, ref: "campaigns" },
+    campaignOwner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "campaigns",
+        required: true,
+    },
 });
 
 export const SessionModel = mongoose.model("sessions", SessionSchema);
