@@ -11,8 +11,9 @@ const CampaignSchema = new mongoose.Schema(
         },
         party: [{ type: mongoose.Schema.Types.ObjectId, ref: "party_members" }],
 
+        notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "notes" }],
         sessions: [{ type: mongoose.Schema.Types.ObjectId, ref: "sessions" }],
-        // notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "notes" }],
+
         userOwner: { type: mongoose.Schema.Types.ObjectId, required: true },
     },
     { timestamps: true }
