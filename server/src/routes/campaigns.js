@@ -19,7 +19,9 @@ router.get("/", async (req, res) => {
 // get Campaign by ID
 router.get("/:id", async (req, res) => {
     try {
-        const campaign = CampaignModel.findById({ _id: req.params.id });
+        const campaign = await CampaignModel.findById({
+            _id: req.params.id,
+        });
 
         res.json(campaign);
     } catch (err) {
@@ -33,7 +35,7 @@ router.get("/:id", async (req, res) => {
 // get all campaigns of User with ID
 router.get("/user/:id", async (req, res) => {
     try {
-        const campaignsByUserID = CampaignModel.find({
+        const campaignsByUserID = await CampaignModel.find({
             userOwner: req.params.id,
         });
 
@@ -61,7 +63,7 @@ router.post("/create", async (req, res) => {
 });
 
 // update Campaign, is it needed tho?
-router.put("/update/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const update = req.body;
         const updatedCampaign = await CampaignModel.updateOne(
