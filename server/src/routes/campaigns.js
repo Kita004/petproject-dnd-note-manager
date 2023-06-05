@@ -46,8 +46,8 @@ router.get("/user/:id", async (req, res) => {
 // create New Campaign
 router.post("/create", async (req, res) => {
     try {
-        const newCampaign = new CampaignModel(req.body.campaign);
-        const userOwner = await UserModel.findById(req.body.userID);
+        const newCampaign = new CampaignModel(req.body);
+        const userOwner = await UserModel.findById(newCampaign.userOwner);
 
         const savedCampaign = await newCampaign.save();
         userOwner.campaigns.push(savedCampaign);
