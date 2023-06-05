@@ -44,7 +44,9 @@ router.get("/campaign/:id", async (req, res) => {
 router.post("/create", async (req, res) => {
     try {
         const newSession = new SessionModel(req.body.session);
-        const campaignOwner = await CampaignModel.findById(req.body.campaignID);
+        const campaignOwner = await CampaignModel.findById(
+            newSession.campaignOwner
+        );
 
         const savedSession = await newSession.save();
         campaignOwner.sessions.push(savedSession);
