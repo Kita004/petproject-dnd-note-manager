@@ -9,7 +9,7 @@ const router = express.Router();
 // get All Notes
 router.get("/", async (req, res) => {
     try {
-        const notes = NoteModel.find({});
+        const notes = await NoteModel.find({});
 
         res.json(notes);
     } catch (err) {
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 // get Note by ID
 router.get("/:id", async (req, res) => {
     try {
-        const notes = NoteModel.findById({ _id: req.params.id });
+        const notes = await NoteModel.findById({ _id: req.params.id });
 
         res.json(notes);
     } catch (err) {
@@ -29,9 +29,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // get All Notes of Session by SessionID
-router.get("/campaign/:id", async (req, res) => {
+router.get("/session/:id", async (req, res) => {
     try {
-        const notesBySessionID = SessionModel.find({
+        const notesBySessionID = await SessionModel.find({
             sessionOwner: req.params.id,
         });
 
@@ -44,7 +44,7 @@ router.get("/campaign/:id", async (req, res) => {
 // get All Notes of Campaign by CampaignID
 router.get("/campaign/:id", async (req, res) => {
     try {
-        const notesByCampaignID = CampaignModel.find({
+        const notesByCampaignID = await CampaignModel.find({
             campaignOwner: req.params.id,
         });
 
@@ -57,14 +57,17 @@ router.get("/campaign/:id", async (req, res) => {
 // create new Note
 router.post("/create", async (req, res) => {
     try {
-        const newNote = new NoteModel(req.body.note);
-        const sessionOwner = await SessionModel.findById(req.body.sessionID);
-        const campaignOwner = await CampaignModel.findById(req.body.campaignID);
+        const newNote = new NoteModel(req.body);
+        const sessionOwner = await SessionModel.findById(newNote.sessionOwner);
+        const campaignOwner = await CampaignModel.findById(
+            newNote.campaignOwner
+        );
 
         const savedNote = await newNote.save();
         sessionOwner.notes.push(savedNote);
-        campaignOwner.notes.push(savedNote);
+        await sessionOwner.save();
 
+        campaignOwner.notes.push(savedNote);
         await campaignOwner.save();
 
         res.json(savedNote);
@@ -89,14 +92,17 @@ router.put("/update/:id", async (req, res) => {
 });
 
 // delete Note with ID
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
-        const noteID = req.body.noteID;
-        const sessionID = req.body.sessionID;
-        const campaignID = req.body.campaignID;
+        const noteID = req.params.id;
+        const noteToDelete = await NoteModel.findById(noteID);
 
-        const sessionOwner = await SessionModel.findById(sessionID);
-        const campaignOwner = await UserModel.findById(campaignID);
+        const sessionOwner = await SessionModel.findById(
+            noteToDelete.sessionOwner
+        );
+        const campaignOwner = await CampaignModel.findById(
+            noteToDelete.campaignOwner
+        );
 
         // delete noteID from Session
         await sessionOwner.notes.pull({ _id: noteID });
@@ -106,7 +112,7 @@ router.delete("/", async (req, res) => {
         await campaignOwner.notes.pull({ _id: noteID });
         await campaignOwner.save();
 
-        await notesModel.deleteOne({ _id: noteID });
+        await NoteModel.deleteOne({ _id: noteID });
 
         res.json({
             message: "Note Deleted Successfully!",

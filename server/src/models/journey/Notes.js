@@ -4,8 +4,8 @@ const NoteSchema = new mongoose.Schema(
     {
         type: {
             type: String,
-            enum: ["npc", "item", "place", "misc"],
-            default: "misc",
+            enum: ["npc", "item", "place", "basic"],
+            default: "basic",
         },
 
         title: { type: String, required: true },
