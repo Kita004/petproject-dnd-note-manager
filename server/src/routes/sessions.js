@@ -8,7 +8,7 @@ const router = express.Router();
 // get All Sessions
 router.get("/", async (req, res) => {
     try {
-        const sessions = SessionModel.find({});
+        const sessions = await SessionModel.find({});
 
         res.json(sessions);
     } catch (err) {
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 // get Session by ID
 router.get("/:id", async (req, res) => {
     try {
-        const session = SessionModel.findById({ _id: req.params.id });
+        const session = await SessionModel.findById({ _id: req.params.id });
 
         res.json(session);
     } catch (err) {
@@ -43,7 +43,7 @@ router.get("/campaign/:id", async (req, res) => {
 // create new Session
 router.post("/create", async (req, res) => {
     try {
-        const newSession = new SessionModel(req.body.session);
+        const newSession = new SessionModel(req.body);
         const campaignOwner = await CampaignModel.findById(
             newSession.campaignOwner
         );
@@ -80,7 +80,7 @@ router.delete("/", async (req, res) => {
         const sessionID = req.body.sessionID;
         const campaignID = req.body.campaignID;
 
-        const campaignOwner = await UserModel.findById(campaignID);
+        const campaignOwner = await CampaignModel.findById(campaignID);
 
         await campaignOwner.sessions.pull({ _id: sessionID });
         await campaignOwner.save();
