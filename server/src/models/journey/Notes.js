@@ -12,7 +12,7 @@ const NoteSchema = new mongoose.Schema({
     comments: [String],
 
     sessionOwner: { type: mongoose.Schema.Types.ObjectId, ref: "sessions" },
-    // campaignOwner: { type: mongoose.Schema.Types.ObjectId, ref: "campaigns" },
+    campaignOwner: { type: mongoose.Schema.Types.ObjectId, ref: "campaigns" },
 });
 
 export const NoteModel = mongoose.model("notes", NoteSchema);
