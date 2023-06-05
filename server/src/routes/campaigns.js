@@ -30,6 +30,19 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+// get all campaigns of User with ID
+router.get("/user/:id", async (req, res) => {
+    try {
+        const campaignsByUserID = CampaignModel.find({
+            userOwner: req.params.id,
+        });
+
+        res.json(campaignsByUserID);
+    } catch (err) {
+        console.linfo("ERROR when fetching all Campaigns by userID: ", err);
+    }
+});
+
 // create New Campaign
 router.post("/create", async (req, res) => {
     try {
@@ -50,10 +63,10 @@ router.post("/create", async (req, res) => {
 // update Campaign, is it needed tho?
 router.put("/update/:id", async (req, res) => {
     try {
-        const campaignWithUpdate = req.body;
+        const update = req.body;
         const updatedCampaign = await CampaignModel.updateOne(
             { _id: req.params.id },
-            campaignWithUpdate
+            update
         );
 
         res.json(updatedCampaign);
@@ -68,17 +81,6 @@ router.delete("/", async (req, res) => {
         const userID = new mongoose.Types.ObjectId(req.body.userID);
 
         const userOwner = await UserModel.findById(userID);
-
-        // userOwner.updateOne(
-        //     { _id: userID },
-        //     {
-        //         $pull: {
-        //             campaigns: {
-        //                 _id: campaignID,
-        //             },
-        //         },
-        //     }
-        // );
 
         await userOwner.campaigns.pull({ _id: campaignID });
         await userOwner.save();
