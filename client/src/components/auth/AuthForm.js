@@ -17,6 +17,7 @@ export const AuthForm = ({
                     <input
                         type="text"
                         id={"username" + title}
+                        className="auth-input"
                         value={username}
                         placeholder="Username..."
                         onChange={(event) => setUsername(event.target.value)}
@@ -27,6 +28,7 @@ export const AuthForm = ({
                     <input
                         type="password"
                         id={"password" + title}
+                        className="auth-input"
                         value={password}
                         placeholder="****"
                         onChange={(event) => setPassword(event.target.value)}
