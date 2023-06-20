@@ -22,12 +22,18 @@ export const Login = () => {
                     password,
                 }
             );
-            setCookies("access_token", response.data.token);
-            window.localStorage.setItem("userID", response.data.userID);
 
-            nav("/");
+            if (response.data.message) {
+                alert(response.data.message);
+            } else {
+                setCookies("access_token", response.data.token);
+                window.localStorage.setItem("userID", response.data.userID);
+                alert("Logged in Successfully!");
+                nav("/");
+            }
         } catch (err) {
-            console.info("Logged in Successfully!");
+            alert(err);
+            console.info("Error when Logging in: ", err);
         }
     };
 

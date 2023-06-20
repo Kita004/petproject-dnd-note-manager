@@ -11,11 +11,19 @@ export const Register = () => {
         event.preventDefault();
 
         try {
-            await axios.post("http://localhost:3001/api/users/register", {
-                username,
-                password,
-            });
-            alert("Registration Completed! Please Login..");
+            const response = await axios.post(
+                "http://localhost:3001/api/users/register",
+                {
+                    username,
+                    password,
+                }
+            );
+
+            if (response.data.error) {
+                alert(response.data.error);
+            } else {
+                alert("Registration Completed! Please Login..");
+            }
         } catch (err) {
             console.info("ERROR: ", err);
         }
