@@ -4,15 +4,9 @@ const SessionSchema = new mongoose.Schema(
     {
         title: String,
         events: [String],
-        notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "notes" }],
-
-        campaignOwner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "campaigns",
-            required: true,
-        },
+        notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }],
     },
     { timestamps: { updatedAt: false } }
 );
 
-export const SessionModel = mongoose.model("sessions", SessionSchema);
+export const SessionModel = mongoose.model("Session", SessionSchema);

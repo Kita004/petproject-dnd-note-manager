@@ -10,14 +10,8 @@ const NoteSchema = new mongoose.Schema(
 
         title: { type: String, required: true },
         comments: [String],
-
-        sessionOwner: { type: mongoose.Schema.Types.ObjectId, ref: "sessions" },
-        campaignOwner: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "campaigns",
-        },
     },
     { timestamps: { updatedAt: false } }
 );
 
-export const NoteModel = mongoose.model("notes", NoteSchema);
+export const NoteModel = mongoose.model("Note", NoteSchema);

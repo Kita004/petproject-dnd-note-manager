@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MyCharacterSchema = new mongoose.Schema({
+const PlayableCharacterSchema = new mongoose.Schema({
     name: { type: String, required: true },
     level: {
         type: Number,
@@ -47,11 +47,9 @@ const MyCharacterSchema = new mongoose.Schema({
     ],
     // TODO: to be implemented
     skills: [],
-
-    campaignOwner: { type: mongoose.Schema.Types.ObjectId, required: true },
 });
 
-export const MyCharacterModel = mongoose.model(
-    "my_characters",
-    MyCharacterSchema
+export const PlayableCharacterModel = mongoose.model(
+    "PlayableCharacter",
+    PlayableCharacterSchema
 );
