@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+import session from "express-session";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
@@ -13,7 +13,6 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 
 mongoose.connect(process.env.ATLAS_URI);
 
@@ -21,5 +20,9 @@ app.use("/api/users", userRouter);
 app.use("/api/campaigns", campaignRouter);
 app.use("/api/sessions", sessionRouter);
 app.use("/api/notes", notesRouter);
+
+app.get("*", function (req, res) {
+    res.send("Sorry, this is an invalid URL.");
+});
 
 app.listen(3001, () => console.info("SERVER STARTED!"));
