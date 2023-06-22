@@ -1,20 +1,29 @@
 /* pinkie */
 /* :root {
-    --primary1-color: #f4a695;
-    --primary2-color: #310b0a;
-    --secondary1-color: #f3eae8;
-    --secondary2-color: #887673;
+    --pri1-color: #f4a695;
+    --pri2-color: #653c3a;
+    --sec1-color: #f3eae8;
+    --sec2-color: #887673;
     --accent-color: #efd36f;
 } */
 
 /* méhecske */
 :root {
-    --primary1-color: #e6d02e;
-    --primary2-color: #efe66e;
-    --secondary1-color: #837870;
-    --secondary2-color: #f3eae8;
+    --pri1-color: #e6d02e;
+    --pri2-color: #efe66e;
+    --sec1-color: #837870;
+    --sec2-color: #f3eae8;
     --accent-color: #211407;
 }
+
+/* avocado? */
+/* :root {
+    --pri1-color: #76a131;
+    --pri2-color: #d7eeb7;
+    --sec1-color: #aaa15c;
+    --sec2-color: #dfda8f;
+    --accent-color: #211407;
+} */
 
 .flex-container {
     display: flex;
@@ -25,7 +34,8 @@
 .flex-col-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    margin: 0 1vmin 0 1vmin;
 }
 
 @media only screen and (max-width: 600px) {
@@ -33,10 +43,13 @@
         flex-direction: column;
         align-items: center;
     }
+    .flex-col-container {
+        align-items: center;
+    }
 }
 
 .auth-page {
-    background-color: var(--secondary2-color);
+    background-color: var(--sec2-color);
     height: 100vh;
 }
 
@@ -51,7 +64,7 @@
 .register-form {
     min-width: 30vw;
     padding: 1.5rem;
-    background-color: var(--secondary1-color);
+    background-color: var(--sec1-color);
     border-radius: 0.5rem;
     box-shadow: 0.5rem 0.5rem 0.3rem rgba(0, 0, 0, 0.1);
 }
@@ -60,7 +73,7 @@
 .register-form h1 {
     font-size: 6vmin;
     text-align: center;
-    color: var(--primary1-color);
+    color: var(--pri1-color);
 }
 
 .form-group {
@@ -70,13 +83,13 @@
 label {
     display: block;
     margin-bottom: 8px;
-    color: var(--secondary2-color);
+    color: var(--sec2-color);
 }
 
 .auth-input {
     width: 100%;
-    padding: 1rem 0 1rem 1rem;
-    border: 1px solid var(--accent-color);
+    padding: 0.8rem 0 0.8rem 0.8rem;
+    border: 2px solid var(--accent-color);
     border-radius: 4px;
 }
 
@@ -86,7 +99,7 @@ label {
     width: 100%;
     padding: 0.5rem 0 0.5rem 0;
     text-align: center;
-    background-color: var(--primary1-color);
+    background-color: var(--pri1-color);
     color: whitesmoke;
     border: none;
     border-radius: 0.3rem;
@@ -101,9 +114,9 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--primary1-color);
-    color: var(--secondary1-color);
+    padding: 0.5rem;
+    background-color: var(--pri1-color);
+    color: var(--pri2-color);
 }
 
 .user-circle {
