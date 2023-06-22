@@ -9,7 +9,8 @@ export const Navbar = () => {
             <div className="flex-container">
                 <FaUserCircle className="user-circle" />
                 <div className="flex-col-container">
-                    Welcome, {userName}!<button>Logout</button>
+                    Welcome, {userName}!
+                    <button className="nav-profile-btn">Logout</button>
                 </div>
             </div>
         </nav>
