@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
         const campaigns = await CampaignModel.find({});
         res.json(campaigns);
     } catch (err) {
+        res.status(500).json({ message: err });
         console.info("ERROR when fetching all campaigns: ", err);
     }
 });
@@ -19,12 +20,14 @@ router.get("/", async (req, res) => {
 // get Campaign by ID
 router.get("/:id", async (req, res) => {
     try {
-        const campaign = await CampaignModel.findById({
-            _id: req.params.id,
-        });
+        const campaign = await CampaignModel.findById(_req.params.id);
 
+        if (!campaign) {
+            return res.status(404).json({ message: "Not found!!" });
+        }
         res.json(campaign);
     } catch (err) {
+        res.status(500).json({ message: err });
         console.info(
             `ERROR when finding Campaign with ID ${req.params.id}:`,
             err
