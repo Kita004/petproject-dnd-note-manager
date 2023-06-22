@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 
-import { CampaignModel } from "../models/journey/Campaigns.js";
-import { UserModel } from "../models/Users.js";
+import { CampaignModel } from "../Models/journey/Campaigns.js";
+import { UserModel } from "../Models/Users.js";
 
 const router = express.Router();
 

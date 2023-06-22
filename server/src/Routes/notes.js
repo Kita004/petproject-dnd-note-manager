@@ -1,8 +1,7 @@
 import express from "express";
 
-import { NoteModel } from "../models/journey/Notes.js";
-import { SessionModel } from "../models/journey/Sessions.js";
-import { CampaignModel } from "../models/journey/Campaigns.js";
+import { SessionModel } from "../Models/journey/Sessions.js";
+import { CampaignModel } from "../Models/journey/Campaigns.js";
 
 const router = express.Router();
 
