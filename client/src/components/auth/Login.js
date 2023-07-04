@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +8,6 @@ export const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const [_, setCookies] = useCookies(["access_token"]);
     const nav = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -20,16 +18,16 @@ export const Login = () => {
                 {
                     username,
                     password,
-                }
+                },
+                { withCredentials: true }
             );
 
             if (response.data.message) {
                 alert(response.data.message);
             } else {
-                setCookies("access_token", response.data.token);
                 window.localStorage.setItem("userID", response.data.userID);
                 alert("Logged in Successfully!");
-                nav("/");
+                nav("/note-manager");
             }
         } catch (err) {
             alert(err);

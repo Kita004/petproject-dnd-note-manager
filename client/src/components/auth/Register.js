@@ -16,7 +16,8 @@ export const Register = () => {
                 {
                     username,
                     password,
-                }
+                },
+                { withCredentials: true }
             );
 
             if (response.data.error) {
