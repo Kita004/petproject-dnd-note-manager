@@ -1,20 +1,26 @@
 import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
-import { NoteManagerPage } from "./pages/NoteManagerPage";
-import { AuthPage } from "./pages/AuthPage";
-import { useLocalStorage } from "./utils/useLocalStorage.js";
+import { Navbar } from "./components/Navbar.js";
+import { NoteManagerPage } from "./pages/NoteManagerPage.js";
+import { AuthPage } from "./pages/AuthPage.js";
+import { Protected } from "./components/Protected.js";
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useLocalStorage("", "userID");
-
     return (
         <div className="App">
             <Router>
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<AuthPage />} />
+                    <Route
+                        path="/note-manager"
+                        element={
+                            // <Protected>
+                            <NoteManagerPage />
+                            // </Protected>
+                        }
+                    />
                 </Routes>
             </Router>
         </div>
