@@ -14,7 +14,6 @@ export function checkLogin(req, res, next) {
 }
 
 export function userVerification(req, res, next) {
-    console.log("userVerification cookies: ", req.cookies.token_boi);
     const token = req.cookies.token_boi;
     if (!token) {
         return res.json({ status: false });

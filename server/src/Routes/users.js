@@ -56,7 +56,6 @@ router.post("/login", async (req, res) => {
         const token = createSecretToken(user._id);
         res.cookie("token_boi", token, {
             withCredentials: true,
-            httpOnly: false,
         });
 
         res.status(201).json({
