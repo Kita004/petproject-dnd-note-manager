@@ -1,3 +1,13 @@
+import { useState } from "react";
+import { CampaignContainer } from "../components/campaigns/CampaignsContainer.js";
+
 export const NoteManagerPage = () => {
-    return <div>Welcome to the Note Manager!</div>;
+    const [campaings, setCampaigns] = useState([1, 2, 3]);
+
+    return (
+        <div>
+            <CampaignContainer campaigns={campaings} />
+            {/* <button onClick={Logout}>LOGOUT</button> */}
+        </div>
+    );
 };

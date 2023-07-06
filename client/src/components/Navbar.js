@@ -1,12 +1,13 @@
 import { FaUserCircle } from "react-icons/fa";
-import { GiMagicGate } from "react-icons/gi";
 
 export const Navbar = () => {
     const userName = "User";
     return (
         <nav>
-            <GiMagicGate className="logo" />
-            <div className="flex-container">
+            <div className="logo-container shadowed">
+                <img src="/bky.png" alt="logo" className="logo" />
+            </div>
+            <div className="user-profile flex-container shadowed">
                 <FaUserCircle className="user-circle" />
                 <div className="flex-col-container">
                     Welcome, {userName}!

@@ -10,7 +10,7 @@ export const AuthForm = ({
 }) => {
     return (
         <div className="auth-container">
-            <form id={id} className={id} onSubmit={handleSubmit}>
+            <form id={id} className={id + " shadowed"} onSubmit={handleSubmit}>
                 <h1>{title}</h1>
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
