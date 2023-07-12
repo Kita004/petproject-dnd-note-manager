@@ -1,6 +1,7 @@
 .flex-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -25,8 +26,10 @@
     }
 }
 
-.auth-page {
-    height: 100vh;
+@media only screen and (min-width: 600px) {
+    .card {
+        width: 20vw;
+    }
 }
 
 .auth-container {
@@ -93,6 +96,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
+    margin-bottom: 3rem;
 }
 
 .nav-profile-btn {
@@ -121,8 +125,50 @@ nav {
     background-color: moccasin;
 }
 
-.logo {
+.logo-img {
     height: 3rem;
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(267deg)
         brightness(103%) contrast(104%);
+}
+
+.create-btn {
+    background-color: moccasin;
+    padding: 1rem;
+    margin: 1rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.btn-create-icon {
+    color: lightsalmon;
+    font-size: xx-large;
+}
+
+.card {
+    background-color: moccasin;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card h2 {
+    color: lightsalmon;
+}
+
+.card button {
+    border: none;
+    background-color: lightsalmon;
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+}
+
+.btn-trash-icon {
+    color: whitesmoke;
 }

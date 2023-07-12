@@ -1,11 +1,13 @@
-// container of CampaignCards,
-// on homepage (NoteManagerPage)
-
+import { PiListPlusFill } from "react-icons/pi";
 import { CampaignCard } from "./CampaignCard";
 
 export const CampaignContainer = ({ campaigns }) => {
     return (
-        <div>
+        <div className="flex-container">
+            <button className="create-btn shadowed">
+                <PiListPlusFill className="btn-create-icon" />
+            </button>
+
             {campaigns.map((campaign) => (
                 <CampaignCard
                 // id={campaign.id}
@@ -15,7 +17,6 @@ export const CampaignContainer = ({ campaigns }) => {
                 // description={campaign.description}
                 />
             ))}
-            <button>+</button>
         </div>
     );
 };

@@ -7,7 +7,6 @@ export const NoteManagerPage = () => {
     return (
         <div>
             <CampaignContainer campaigns={campaings} />
-            {/* <button onClick={Logout}>LOGOUT</button> */}
         </div>
     );
 };

@@ -5,7 +5,7 @@ export const Navbar = () => {
     return (
         <nav>
             <div className="logo-container shadowed">
-                <img src="/bky.png" alt="logo" className="logo" />
+                <img src="/bky.png" alt="logo" className="logo-img" />
             </div>
             <div className="user-profile flex-container shadowed">
                 <FaUserCircle className="user-circle" />

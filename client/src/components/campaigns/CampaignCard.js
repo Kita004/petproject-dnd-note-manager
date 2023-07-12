@@ -6,23 +6,18 @@ export const CampaignCard = (
     }
 ) => {
     return (
-        <div>
-            <div>
-                <small>Edited: 2023/07/02</small>
-                <small>Created: 2023/07/02</small>
+        <div className="card shadowed">
+            <header className="card-header">
+                <section className="flex-col-container">
+                    <small>Edited: 2023/07/02</small>
+                    <small>Created: 2023/07/02</small>
+                </section>
                 <button>
-                    <BsTrashFill />
+                    <BsTrashFill className="btn-trash-icon" />
                 </button>
-            </div>
-
+            </header>
             <h2>Campaign Title</h2>
-            <p>
-                Nulla tincidunt pharetra tellus tempus porta. Integer vel lectus
-                ex. In hac habitasse platea dictumst. Mauris venenatis convallis
-                odio dignissim volutpat. In tincidunt non nisl nec vehicula.
-                Nunc tincidunt scelerisque quam, at pellentesque risus vulputate
-                vitae. Cras finibus turpis justo...
-            </p>
+            <p>Nulla tinciduinibus turpis justo...</p>
         </div>
     );
 };
