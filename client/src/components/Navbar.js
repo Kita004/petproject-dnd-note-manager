@@ -1,10 +1,12 @@
 import { FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+    const nav = useNavigate();
     const userName = "User";
     return (
         <nav>
-            <div className="logo-container shadowed">
+            <div onClick={() => nav("/")} className="logo-container shadowed">
                 <img src="/bky.png" alt="logo" className="logo-img" />
             </div>
             <div className="user-profile flex-container shadowed">
